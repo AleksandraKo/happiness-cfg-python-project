@@ -12,28 +12,27 @@ def recipe_search(mealType):
     return data['hits']
 
 def another_search(diet):
-    result1 = requests.get('https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(diet, api_id, api_key))
-    data1 = result1.json()
-    return data1['hits']
+    output = requests.get('https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(diet, api_id, api_key))
+    info = output.json()
+    return info['hits']
 
 def run():
     mealType = input('Do you want breakfast, lunch, dinner or do you just want a snack?').lower()
 
     if mealType in ['lunch','dinner']:
-         health = input('Would you like your {} to be more diet aware i.e. low-carb, balanced?'.format(mealType))
+         diet = input('Would you like your {} to be more diet aware i.e. low-carb, high-protein, balanced?'.format(mealType))
 
-         if health == "yes":
 
-             recipes1 = recipe_search(diet)
-             for recipe in recipes1:
+         if diet == 'yes':
+             recipes = another_search(diet) and recipe_search(mealType)
+             for recipe in recipes:
                  print(recipe['recipe']['label'])
                  print(recipe['recipe']['url'])
+                 print(recipe['recipe']['calories'])
                  print()
-
-
     else:
-        recipes = recipe_search(mealType)
-        for recipe in recipes:
+        recipes1 = recipe_search(mealType)
+        for recipe in recipes1:
             print(recipe['recipe']['label'])
             print(recipe['recipe']['url'])
             print(recipe['recipe']['calories'])

@@ -39,14 +39,16 @@ def run():
             for recipe in recipes:
                 print(recipe['recipe']['label'])
                 print(recipe['recipe']['url'])
+                print("calories (kcal):")
                 print(recipe['recipe']['calories'])
                 print()
 
         else:
-            recipes_0=  mealtype_search(mealType) and ingredient_search(ingredient)
+            recipes_0 = mealtype_search(mealType) and ingredient_search(ingredient)
             for recipe0 in recipes_0:
                 print(recipe0['recipe']['label'])
                 print(recipe0['recipe']['url'])
+                print("calories (kcal):")
                 print(recipe0['recipe']['calories'])
                 print()
 
@@ -55,12 +57,13 @@ def run():
         for recipe1 in recipes1:
             print(recipe1['recipe']['label'])
             print(recipe1['recipe']['url'])
+            print("calories (kcal):")
             print(recipe1['recipe']['calories'])
             print()
 
 
 
-    serves = int(input('How many people are you serving?'))
+    serves = input('How many people are you serving?')
     print('Please see the recipes which suit your other needs along with their serving sizes')
 
     recipes3 = mealtype_search(mealType) and ingredient_search(ingredient)
@@ -69,7 +72,9 @@ def run():
         if serve == serves:
             print(recipe3['recipe']['label'])
             print(recipe3['recipe']['url'])
+            print("Calories (kcal):")
             print(recipe3['recipe']['calories'])
+            print("Servings:")
             print(recipe3['recipe']['yield'])
             print()
 
@@ -88,11 +93,11 @@ def run():
             for recipe2 in recipes2:
                 print(recipe2['recipe']['label'])
                 print(recipe2['recipe']['url'])
+                print("Calories (kcal):")
                 print(recipe2['recipe']['calories'])
                 print()
-    print('End of program.')
 
-
+    print('Enjoy your meal!')
 
 
 

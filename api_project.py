@@ -37,20 +37,16 @@ def health_check(health):
 
 #Function below incorporaes all of the functions above to generate recipes
 
-def run():
-    ingredient = input('What is the main ingredient that you want to cook with'
-                       ' today (if you do not have one write "none"):').lower()
+def main():
+    ingredient = input('What is the main ingredient that you want to cook with today (if you do not have one write "none"):').lower()
 
-    mealType = input('Do you want breakfast, lunch, dinner or do you just want'
-                     ' a snack?').lower()
+    mealType = input('Do you want breakfast, lunch, dinner or do you just want a snack?').lower()
 
     if mealType in ['lunch','dinner']:
-        diet = input('Would you like your {} to be more diet aware i.e. '
-                     'low-carb, high-protein, balanced?'.format(mealType)).lower()
+        diet = input('Would you like your {} to be more diet aware i.e. low-carb, high-protein, balanced?'.format(mealType)).lower()
 
         if diet == 'yes':
-            recipes = diet_search(diet) and mealtype_search(mealType) \
-                      and ingredient_search(ingredient)
+            recipes = diet_search(diet) and mealtype_search(mealType) and ingredient_search(ingredient)
 
             for recipe in recipes:
                 print(recipe['recipe']['label'])
@@ -80,9 +76,9 @@ def run():
             print()
 
 
-    serves = input('How many people are you serving?')
-    print('Please see the recipes which suit your other needs along '
-          'with their serving sizes')
+    serves = int(input('How many people are you serving? (please enter an integer value):'))
+
+    print('Please see the recipes which suit your other needs along with their serving sizes')
 
 
     recipes3 = mealtype_search(mealType) and ingredient_search(ingredient)
@@ -99,22 +95,20 @@ def run():
             print(int(recipe3['recipe']['yield']))
             print()
 
-        else:
-            print('No dishes were found to meet all criteria.')
+
+    print('No other dishes were found to meet all criteria.')
 
 
-    satisfaction = input('Are you satisfied with these selections?'.lower())
+    satisfaction = input('Are you satisfied with these selections?').lower()
 
     if satisfaction == 'yes':
-        print('Enjoy your dish!')
+        print('Enjoy your meal!')
 
     else:
-        health = input('Do you need to know options which are more suitable '
-                       'for those with dietary restrictions?'.lower())
+        health = input('Do you need to know options which are more suitable for those with dietary restrictions?').lower()
 
         if health == 'yes':
-            recipes2 = mealtype_search(mealType) and ingredient_search(ingredient)\
-                       and health_check(health)
+            recipes2 = mealtype_search(mealType) and ingredient_search(ingredient) and health_check(health)
 
             for recipe2 in recipes2:
                 print(recipe2['recipe']['label'])
@@ -122,9 +116,10 @@ def run():
                 print('Calories (kcal):')
                 print(int(recipe2['recipe']['calories']))
                 print()
+                print('Amazing! We hope you enjoy your meal!')
 
-    print('Enjoy your meal!')
+        else:
+            print("Sorry we coldn't help you today! :(")
 
 
-
-run()
+main()
